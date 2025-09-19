@@ -1,0 +1,30 @@
+# CRUD Activity
+
+Requirements:
+1. Identify 4 SQL statements needed for the art application.
+2. Data required from application to execute SQL statement identified.
+3. SQL statements identify data returned to application. If no data return is needed that is clearly stated.
+
+Purpose: Check if the user exists and returns the username, email, and password to allow the application to compare the password.
+Type: SELECT
+Information required: username, email, and password 
+Query: SELECT username, email, password FROM users WHERE email = 'user@example.com';
+Return: it will return username, email, and password in case the condition is true.
+
+Purpose: Update the last login activity of the user.
+Type: UPDATE
+Information required: last_login_at and email
+Query: UPDATE users SET last_login_at = now() WHERE email = 'user@example.com';
+Return: It does not return any data or information.
+
+Purpose: Register a user record into the table users with the fields first_name, last_name, email, and password.
+Type: INSERT
+Information required: first_name, last_name, email, and password
+Query: INSERT INTO users (first_name, last_name, email, password) VALUES ('Jon', 'Doe', 'joe.doe@gmail.com', 'encrypted-password');
+Return: It does not return any data or information.
+
+Purpose: Remove the user record from the table users where email address is equal to the value.
+Type: DELETE
+Information required: email
+Query: DELETE FROM users WHERE email = 'joe.doe@gmail.com';
+Return: It does not return any data or information.
