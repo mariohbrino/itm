@@ -2,13 +2,15 @@ USE v_art;
 
 -- 1. Insert a record on artist table
 INSERT INTO artist (artist_id, fname, mname, lname, dob, dod, country, local) VALUES (10, "Johannes", null, "Vermeer", 1632, 1674, "Netherlands", "n");
-SELECT t2.artist_id FROM artist t2 WHERE t2.fname = "Johannes" and t2.lname = "Vermeer";
+-- SELECT t2.artist_id FROM artist t2 WHERE t2.fname = "Johannes" and t2.lname = "Vermeer";
 
 -- 2. Select all artit with order by last name
-SELECT artist_id, fname, mname, lname, dob, dod, country, local from artist order by lname;
+SELECT artist_id, fname, mname, lname, dob, dod, country, local FROM artist order by lname;
 
 -- 3. Update an record from artist table
-UPDATE artist SET dod = 1674 WHERE artist_id = 10;
+SELECT artist_id, fname, mname, lname, dob, dod, country, local FROM artist WHERE artist_id = 10;
+UPDATE artist SET fname = "Johannes", mname = null, lname = "Vermeer", dob = 1632, dod = 1675, country = "Netherlands", local = "n" WHERE artist_id = 10;
+-- SELECT artist_id, fname, mname, lname, dob, dod, country, local FROM artist WHERE fname = "Johannes" and lname = "Vermeer";
 
 -- 4. Delete an record from artist table
 DELETE FROM artist WHERE artist_id = 10;
@@ -39,7 +41,7 @@ SELECT TRIM(REGEXP_REPLACE(product_name, "-[[:space:]]*[0-9]{4}(/?[0-9]{4})*$", 
 
 -- 12. List the product name and then take the 2019 model year bikes and divide the price into 3 equal payments.
 -- Display the payment with a dollar sign, comma at the thousands place and two decimal places.
-SELECT product_name, CONCAT("$ ", FORMAT(list_price/3,2)) as "One of 3 payments" FROM product WHERE model_year = 2019 LIMIT 5;
+SELECT product_name, CONCAT("$ ", FORMAT(list_price/3,2)) as "One of 3 payments" FROM product WHERE model_year = 2019;
 
 USE magazine;
 
@@ -48,7 +50,7 @@ SELECT magazineName, FORMAT(magazinePrice * 0.97, 2) as "3% off" from magazine L
 
 -- 14. Show the primary key of id from the subscriber table and using the date of 2020-12-20 as if it were today date,
 -- how long in years, ROUNDED to the nearest year, has it been since their subscription started?
-SELECT t1.subscriberKey, CEIL(DATEDIFF("2020-12-20", t2.subscriptionStartDate) / 365) as "Years since subscription" FROM subscriber t1 JOIN subscription t2 ON t1.subscriberKey = t2.subscriberKey;
+SELECT t1.subscriberKey, ROUND(DATEDIFF("2020-12-20", t1.subscriptionStartDate) / 365) as "Years since subscription" FROM subscription t1;
 
 -- 15. Show the subscriptionStartDate and subscriptionLength and add the  subscriptionLength to the subscriptionStartDate
 -- to see the date of how long their subscription will go. Format that date so it takes the format of Month name, number day with comma and then a 4 digit year.
